@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, GraduationCap } from "lucide-react";
 
 import type { SocialLink } from "@/data/content";
 
-/** Google Scholar has no lucide glyph — use the graduation cap as a tasteful stand-in. */
+/** Google Scholar has no lucide glyph; use the graduation cap as a tasteful stand-in. */
 export function SocialIcon({
   icon,
   className,

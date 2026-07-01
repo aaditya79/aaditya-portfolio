@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 import { identity } from "@/data/content";
 
-export const alt = `${identity.name} — ML Researcher, LLM Agent Security`;
+export const alt = `${identity.name}, ${identity.title}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -68,7 +68,7 @@ export default function OpenGraphImage() {
               fontFamily: "sans-serif",
             }}
           >
-            ML Researcher — LLM Agent Security
+            {identity.title}
           </div>
         </div>
 

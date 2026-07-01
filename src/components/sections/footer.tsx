@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Mail } from "lucide-react";
 
 import { identity, socials } from "@/data/content";
 import { SocialIcon } from "@/components/icons";
+import { CopyEmail } from "@/components/copy-email";
 
 export function Footer() {
   const year = "2026";
@@ -15,13 +15,7 @@ export function Footer() {
             <p className="font-serif text-lg font-semibold tracking-tight text-foreground">
               {identity.name}
             </p>
-            <a
-              href={`mailto:${identity.email}`}
-              className="mt-2 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              <Mail className="h-4 w-4" aria-hidden="true" />
-              {identity.email}
-            </a>
+            <CopyEmail className="mt-2 -ml-1.5" />
           </div>
 
           <div className="flex items-center gap-2">

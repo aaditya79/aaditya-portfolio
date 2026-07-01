@@ -2,6 +2,8 @@ import * as React from "react";
 
 import { Nav } from "@/components/nav";
 import { BackToTop } from "@/components/back-to-top";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { Noise } from "@/components/noise";
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Publications } from "@/components/sections/publications";
@@ -48,6 +50,7 @@ export default function Home() {
         Skip to content
       </a>
 
+      <ScrollProgress />
       <Nav />
 
       <main id="main">
@@ -63,6 +66,7 @@ export default function Home() {
 
       <Footer />
       <BackToTop />
+      <Noise />
     </>
   );
 }

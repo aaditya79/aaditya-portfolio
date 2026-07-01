@@ -19,14 +19,15 @@ const fraunces = Fraunces({
 });
 
 const siteUrl = "https://aadityapai.vercel.app";
+const title = `${identity.name}, ${identity.title}`;
 const description =
-  "Aaditya Pai — ML researcher specializing in LLM agent security: prompt injection, unsafe tool use, and policy enforcement across multi-step agent workflows.";
+  "Aaditya Pai is an ML researcher specializing in LLM agent security: prompt injection, unsafe tool use, and policy enforcement across multi-step agent workflows.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${identity.name} — ML Researcher, LLM Agent Security`,
-    template: `%s — ${identity.name}`,
+    default: title,
+    template: `%s, ${identity.name}`,
   },
   description,
   keywords: [
@@ -43,14 +44,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: `${identity.name} — ML Researcher, LLM Agent Security`,
+    title,
     description,
     siteName: identity.name,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${identity.name} — ML Researcher, LLM Agent Security`,
+    title,
     description,
   },
   alternates: {

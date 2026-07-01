@@ -1,6 +1,6 @@
 /**
  * Single source of truth for all site content.
- * Edit this file to update the portfolio — components read from here.
+ * Edit this file to update the portfolio; components read from here.
  */
 
 export type SocialLink = {
@@ -12,6 +12,7 @@ export type SocialLink = {
 
 export type Publication = {
   title: string;
+  /** Full author list; the UI bolds "Aaditya Pai" wherever it appears. */
   authors: string;
   year: string;
   venue: string;
@@ -29,8 +30,11 @@ export type ExperienceItem = {
 
 export type Project = {
   name: string;
-  stack?: string;
+  org?: string;
+  period?: string;
   description: string;
+  /** GitHub URL; omit to hide the repo link/icon. */
+  href?: string;
 };
 
 export type SkillGroup = {
@@ -45,11 +49,16 @@ export type EducationItem = {
   period: string;
 };
 
+export type Credential = {
+  name: string;
+  issuer: string;
+};
+
 export type NavItem = { label: string; id: string };
 
 export const identity = {
   name: "Aaditya Pai",
-  title: "ML Researcher — LLM Agent Security",
+  title: "ML Researcher, LLM Agent Security",
   tagline:
     "Columbia MS Data Science · Purdue BS Computer Engineering · New York, NY",
   email: "aup2005@columbia.edu",
@@ -76,14 +85,17 @@ export const socials: SocialLink[] = [
 export const scholarUrl =
   "https://scholar.google.com/citations?user=YYfwugIAAAAJ&hl=en";
 
+/** Bolded in the UI wherever it appears in an author list. */
+export const authorHighlight = "Aaditya Pai";
+
 export const about =
-  "ML researcher working on LLM agent security — building attacks, defenses, and evaluation frameworks for LLM agents in real-world deployment settings. Currently a graduate researcher at Columbia's DAPLab (Data, Agents, and Processes Lab), focused on prompt injection, unsafe tool use, and policy enforcement across multi-step agent workflows. Always happy to connect.";
+  "I'm an ML researcher focused on the security of LLM agent systems, where I build attacks, defenses, and evaluation frameworks for agents deployed in the real world. I'm currently a Graduate Researcher at Columbia's DAPLab (Data, Agents, and Processes Lab), where I work on prompt injection, unsafe tool use, and policy enforcement across multi-step workflows, and a Software Engineer Intern at CodeIntegrity. Alongside the security work, I'm drawn to quantitative finance and to problems where careful evaluation meets real deployment constraints.";
 
 export const publications: Publication[] = [
   {
     title:
       "Evaluating Prompting-Based Defenses Against Domain-Camouflaged Injection Attacks",
-    authors: "A. Pai",
+    authors: "Aaditya Pai",
     year: "2026",
     venue: "arXiv:2606.18530",
     href: "https://arxiv.org/abs/2606.18530",
@@ -91,7 +103,7 @@ export const publications: Publication[] = [
   {
     title:
       "Blind Spots in the Guard: How Domain-Camouflaged Injection Attacks Evade Detection in Multi-Agent LLM Systems",
-    authors: "A. Pai",
+    authors: "Aaditya Pai",
     year: "2026",
     venue: "arXiv:2605.22001",
     href: "https://arxiv.org/abs/2605.22001",
@@ -99,7 +111,7 @@ export const publications: Publication[] = [
   {
     title:
       "PARSE: Provenance-Aware Retrieval Sanitization for Professional Domain LLM Agents",
-    authors: "A. Pai",
+    authors: "Aaditya Pai",
     year: "2026",
     venue: "arXiv:2606.17467",
     href: "https://arxiv.org/abs/2606.17467",
@@ -107,7 +119,8 @@ export const publications: Publication[] = [
   {
     title:
       "Deterministic Data Flow Control Improves Agent Utility and Reduces Safety Violations",
-    authors: "A. Pai",
+    authors:
+      "Charlie Summers, Prajwal Raghunath, Aaditya Pai, Mayur Kulkarni, Zhuo Zhang, Oliver Kennedy, Eugene Wu",
     year: "2026",
     venue: "OpenReview",
     href: "https://openreview.net/pdf?id=V5WU7pCCVF",
@@ -118,11 +131,11 @@ export const experience: ExperienceItem[] = [
   {
     role: "Software Engineer Intern",
     org: "CodeIntegrity",
-    location: "Remote",
+    location: "New York, NY",
     period: "Jul 2026 – Present",
     current: true,
     bullets: [
-      "AI agent security startup. Building next-generation agent security benchmarking and evaluation infrastructure.",
+      "Funded AI agent security startup. Building next-generation agent security benchmarking and evaluation infrastructure.",
     ],
   },
   {
@@ -134,7 +147,7 @@ export const experience: ExperienceItem[] = [
     bullets: [
       "Researching adversarial robustness and security of LLM agent systems: prompt injection, unsafe tool use, and policy enforcement across multi-step workflows.",
       "Built evaluation infrastructure and attack pipelines across AgentDojo, WebArena, InjecAgent, and ToolBench to measure detector failure modes, attack transferability, and agent vulnerability under adversarial conditions.",
-      "Designed domain-camouflaged injection attacks and provenance-aware defenses for multi-agent systems, leading to first-author EMNLP submissions on agent robustness and runtime safeguards.",
+      "Designed domain-camouflaged injection attacks and provenance-aware defenses for multi-agent systems.",
     ],
   },
   {
@@ -158,42 +171,74 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
-    role: "ML Researcher",
+    role: "Undergraduate Researcher",
     org: "Autonomous Motorsports Purdue (AMP)",
     location: "West Lafayette, IN",
     period: "Aug 2022 – May 2023",
     bullets: [
-      'Won the "Share with the World" ML Research Award at the Purdue Undergraduate Research Exposition for simulating autonomous vehicle navigation using deep learning (CNNs for steering-angle prediction, hybrid FAST + ORB object detection).',
+      "Built a CNN with ELU activations for real-time steering prediction in a simulated autonomous driving environment, with a hybrid FAST-ORB feature pipeline and a regression steering model trained on 45K+ frames of sensor data, reaching under 5 degrees mean absolute error at 30 FPS and improving obstacle avoidance accuracy by 30% under real-time latency constraints.",
+      'Won the "Share with the World" VIP Award at the Purdue Undergraduate Research Conference; benchmarked feature extraction methods, evaluated model stability across simulation conditions, and optimized the inference pipeline for real-time deployment.',
     ],
   },
   {
-    role: "ML Researcher",
+    role: "Undergraduate Researcher",
     org: "Lunabotics (NASA Robotic Mining Competition)",
     location: "West Lafayette, IN",
     period: "Aug 2021 – Dec 2021",
     bullets: [
-      "Built high-performance object detection with OpenCV and ROS for terrain mapping in a simulated extraterrestrial environment; evaluated MOSSE tracking and FAST/ORB detection methods.",
+      "Benchmarked object detection and tracking algorithms under noisy visual conditions across varied lighting and terrain, analyzing accuracy, stability, and failure modes; selected the MOSSE filter through systematic evaluation, reaching 95% tracking accuracy under real-time constraints.",
+      "Built an end-to-end OpenCV perception pipeline integrating detection and tracking for autonomous navigation in the NASA Lunabotics Mining Competition environment, validated across edge cases with documented, reproducible evaluation methodology.",
     ],
   },
 ];
 
-export const featuredProject: Project = {
-  name: "ZK-KYA: Privacy-Preserving Identity Layer for AI Agents",
-  stack: "Solidity, circom, snarkjs, Ethereum",
-  description:
-    "Zero-knowledge Know-Your-Agent protocol enabling AI agents to prove compliance with identity and authorization constraints without revealing credentials. Built zk-SNARKs in circom; deployed verifier contracts on Ethereum testnet.",
-};
+export const featuredProjects: Project[] = [
+  {
+    name: "NBA Betting Multi-Agent Reasoning System",
+    org: "Columbia University",
+    period: "Jan 2026 – May 2026",
+    description:
+      "Multi-agent debate system for pre-game NBA line prediction. Ingested live odds, statistical, and contextual data across six sources, implemented a ReAct-style agent loop with ChromaDB retrieval, and benchmarked multi-agent debate against single-agent chain-of-thought using Brier scores and calibration curves. Ran ablations isolating each data source and backtested against closing line value on a held-out season.",
+    href: "https://github.com/aaditya79/MatchOdds-AI",
+  },
+  {
+    name: "Statistical Arbitrage Research Platform",
+    org: "Columbia University",
+    period: "Jan 2026 – May 2026",
+    description:
+      "Reimplemented the Avellaneda and Lee (2010) statistical arbitrage framework from scratch: PCA factor decomposition, OU residual modeling, s-score signal generation, HMM regime filtering, and Almgren-Chriss execution. Extended it with HMM regime filtering to suppress signals in trending markets, volatility-targeted position sizing, and optimal execution modeling. Interactive React frontend for backtesting with automated Sharpe ratio, drawdown, and turnover reporting.",
+    href: "https://github.com/arnavahuja/StatArb-Research",
+  },
+  {
+    name: "ZK-KYA: Zero-Knowledge Identity Layer for AI Agents",
+    org: "Columbia University",
+    period: "Jan 2026 – May 2026",
+    description:
+      "Privacy-preserving authorization protocol for autonomous AI agents using zk-SNARKs. Agents prove compliance with identity and scope constraints without revealing credentials. Implemented Groth16 circuits in circom, deployed Solidity verifier contracts on an Ethereum testnet, and benchmarked proof generation time, R1CS constraints, and on-chain gas costs.",
+    href: "https://github.com/aaditya79/ZK-KYA-Auth-Layer",
+  },
+  {
+    name: "Low-Latency Order Book Engine",
+    org: "Columbia University",
+    period: "Jan 2026 – Mar 2026",
+    description:
+      "High-performance limit order book in C++ with price-time priority matching, a custom object-pool allocator, and an Avellaneda-Stoikov market maker. Achieved 166ns median and 750ns p99 matching latency across 10M+ order events. Validated reconstructed book state against LOBSTER NASDAQ tick data over 400K real market events, and implemented a FIX 4.2 protocol parser with an end-to-end order round-trip demo.",
+    href: "https://github.com/aaditya79/order-book-engine",
+  },
+];
 
 export const earlierProjects: Project[] = [
   {
     name: "Sentiment AI",
     description:
       "CNN image classifier (happy/sad) reaching 100% train/val accuracy after 20 epochs; ~3.7M-parameter pipeline with 3 conv layers + max pooling.",
+    href: "https://github.com/aaditya79/SentientAI",
   },
   {
     name: "WhiskerPixel",
     description:
       "Probabilistic pixel classifier (cat vs. grass) with 94–95% validation accuracy across two models.",
+    href: "https://github.com/aaditya79/WhiskerPixel",
   },
   {
     name: "AES Implementation",
@@ -204,6 +249,7 @@ export const earlierProjects: Project[] = [
     name: "Custom Compiler + VM",
     description:
       "Parser, symbol table, instruction buffer, and virtual machine for a custom assembly language in C++.",
+    href: "https://github.com/aaditya79/Compiler-and-Virtual-Machine",
   },
   {
     name: "Genome Assembly Algorithm",
@@ -214,6 +260,7 @@ export const earlierProjects: Project[] = [
     name: "Sorting Algorithm Visualizer",
     description:
       "Tkinter GUI visualizing selection/insertion/bubble/quick/shell sort with adjustable speed and data size.",
+    href: "https://github.com/aaditya79/Sorting-Algorithm-Visualizer",
   },
 ];
 
@@ -222,20 +269,22 @@ export const skills: SkillGroup[] = [
     category: "Languages",
     items: [
       "Python",
+      "C++",
+      "C",
       "SQL",
-      "C/C++",
-      "Embedded C",
-      "PowerShell",
       "R",
+      "SAS",
       "MATLAB",
+      "Solidity",
+      "PowerShell",
+      "Embedded C",
       "System Verilog",
       "VHDL",
       "Assembly",
-      "React Native",
     ],
   },
   {
-    category: "Data / ML",
+    category: "ML & AI",
     items: [
       "PyTorch",
       "TensorFlow",
@@ -246,27 +295,43 @@ export const skills: SkillGroup[] = [
       "LangChain",
       "ChromaDB",
       "OpenCV",
-      "Matplotlib",
-      "Power BI",
-      "Jupyter",
     ],
   },
   {
-    category: "Infrastructure",
+    category: "Cloud & Infrastructure",
     items: [
-      "Git",
-      "Linux",
       "AWS",
+      "GCP",
+      "Azure",
+      "Vertex AI",
       "Docker",
       "Kubernetes",
       "Kubeflow",
       "Helm",
       "Amazon EKS",
       "CI/CD",
+      "Git",
+      "Linux",
       "Grafana",
       "Prometheus",
       "BigQuery",
       "Firebase",
+    ],
+  },
+  {
+    category: "Frontend & Visualization",
+    items: ["React", "Power BI", "Tableau", "Matplotlib", "Jupyter"],
+  },
+  {
+    category: "Focus Areas",
+    items: [
+      "LLM agent security",
+      "prompt injection",
+      "adversarial robustness",
+      "RAG",
+      "multi-agent systems",
+      "quantitative modeling",
+      "backtesting",
     ],
   },
 ];
@@ -286,20 +351,50 @@ export const education: EducationItem[] = [
   },
 ];
 
-export const awards: string[] = [
-  "Share with the World ML Research Award (Purdue Undergraduate Research Exposition)",
-  "Eta Kappa Nu (IEEE-HKN), Beta Chapter — ECE Honor Society",
-  "Dean's List & Semester Honors (7 of 8 semesters)",
-  "Charles W. Brown ECE Scholarship",
-  "Eli Shay Electrical Engineering Scholarship",
+export const awards: Credential[] = [
+  {
+    name: "Share with the World ML Research Award",
+    issuer: "Purdue Undergraduate Research Exposition",
+  },
+  {
+    name: "Eta Kappa Nu (IEEE-HKN), Beta Chapter",
+    issuer: "ECE Honor Society",
+  },
+  {
+    name: "Dean's List & Semester Honors",
+    issuer: "7 of 8 semesters",
+  },
+  {
+    name: "Charles W. Brown ECE Scholarship",
+    issuer: "Purdue ECE",
+  },
+  {
+    name: "Eli Shay Electrical Engineering Scholarship",
+    issuer: "Purdue ECE",
+  },
 ];
 
-export const certifications: string[] = [
-  "Advanced Calculus for Financial Engineering — Baruch College, CUNY",
-  "Financial Markets — Yale University",
-  "Managing ML Projects with Google Cloud — Google",
-  "Software Engineering Virtual Experience — JPMorgan Chase & Co.",
-  "Intermediate C++ — Microsoft",
+export const certifications: Credential[] = [
+  {
+    name: "Advanced Calculus for Financial Engineering",
+    issuer: "Baruch College, CUNY",
+  },
+  {
+    name: "Financial Markets",
+    issuer: "Yale University",
+  },
+  {
+    name: "Managing ML Projects with Google Cloud",
+    issuer: "Google",
+  },
+  {
+    name: "Software Engineering Virtual Experience",
+    issuer: "JPMorgan Chase & Co.",
+  },
+  {
+    name: "Intermediate C++",
+    issuer: "Microsoft",
+  },
 ];
 
 export const navItems: NavItem[] = [

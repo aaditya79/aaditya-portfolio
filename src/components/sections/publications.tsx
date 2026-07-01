@@ -1,9 +1,29 @@
 import * as React from "react";
 import { ArrowUpRight, FileText } from "lucide-react";
 
-import { publications, scholarUrl } from "@/data/content";
+import { publications, scholarUrl, authorHighlight } from "@/data/content";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
+import { Spotlight } from "@/components/spotlight";
+
+/** Render an author list, bolding the site owner's name wherever it appears. */
+function AuthorLine({ authors }: { authors: string }) {
+  const parts = authors.split(authorHighlight);
+  return (
+    <p className="mt-2 text-sm text-muted-foreground">
+      {parts.map((part, i) => (
+        <React.Fragment key={i}>
+          {part}
+          {i < parts.length - 1 ? (
+            <span className="font-semibold text-foreground">
+              {authorHighlight}
+            </span>
+          ) : null}
+        </React.Fragment>
+      ))}
+    </p>
+  );
+}
 
 export function Publications() {
   return (
@@ -15,7 +35,7 @@ export function Publications() {
         <SectionHeading
           index="02"
           title="Research & Publications"
-          description="Selected work on the security and adversarial robustness of LLM agents — attacks, defenses, and evaluation."
+          description="Selected work on the security and adversarial robustness of LLM agents: attacks, defenses, and evaluation."
         />
 
         <ol className="space-y-4">
@@ -25,9 +45,10 @@ export function Publications() {
                 href={pub.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative block rounded-lg border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:p-7"
+                className="group relative block overflow-hidden rounded-lg border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background md:p-7"
               >
-                <div className="flex items-start justify-between gap-4">
+                <Spotlight />
+                <div className="relative z-10 flex items-start justify-between gap-4">
                   <div className="min-w-0">
                     <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
                       <span className="inline-flex items-center gap-1.5 font-medium text-accent">
@@ -41,15 +62,13 @@ export function Publications() {
                         •
                       </span>
                       <span className="tabular-nums">{pub.year}</span>
-                      <span aria-hidden="true" className="text-border">
-                        •
-                      </span>
-                      <span>{pub.authors}</span>
                     </div>
 
                     <h3 className="text-pretty font-serif text-lg font-semibold leading-snug tracking-tight text-foreground transition-colors group-hover:text-accent sm:text-xl">
                       {pub.title}
                     </h3>
+
+                    <AuthorLine authors={pub.authors} />
                   </div>
 
                   <span

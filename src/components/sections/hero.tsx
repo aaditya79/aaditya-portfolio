@@ -7,6 +7,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { identity, socials } from "@/data/content";
 import { Button } from "@/components/ui/button";
 import { SocialIcon } from "@/components/icons";
+import { InteractiveGrid } from "@/components/interactive-grid";
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
@@ -38,20 +39,8 @@ export function Hero() {
         className="hero-glow pointer-events-none absolute inset-0 -z-10"
         aria-hidden="true"
       />
-      {/* Fine grid texture */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.35] dark:opacity-25"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-          maskImage:
-            "radial-gradient(70% 60% at 50% 30%, black 0%, transparent 80%)",
-          WebkitMaskImage:
-            "radial-gradient(70% 60% at 50% 30%, black 0%, transparent 80%)",
-        }}
-        aria-hidden="true"
-      />
+      {/* Cursor-reactive grid */}
+      <InteractiveGrid />
 
       <div className="container-measure">
         <motion.div
@@ -68,7 +57,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/70 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
-            Open to full-time roles — 2026
+            Open to full-time roles · Graduating December 2026
           </motion.p>
 
           <motion.h1

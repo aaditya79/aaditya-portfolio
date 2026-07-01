@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Light mode — warm off-white, rich near-black ink, muted indigo accent */
+    /* Light mode: warm off-white, rich near-black ink, muted indigo accent */
     --background: 36 24% 97%;
     --foreground: 24 12% 12%;
 
@@ -27,7 +27,7 @@
   }
 
   .dark {
-    /* Dark mode — rich off-black, off-white ink, luminous indigo accent */
+    /* Dark mode: rich off-black, off-white ink, luminous indigo accent */
     --background: 28 9% 7%;
     --foreground: 40 18% 92%;
 
