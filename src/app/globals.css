@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode — warm off-white, rich near-black ink, muted indigo accent */
+    --background: 36 24% 97%;
+    --foreground: 24 12% 12%;
+
+    --muted: 30 12% 93%;
+    --muted-foreground: 25 8% 38%;
+
+    --card: 40 30% 99%;
+    --card-foreground: 24 12% 12%;
+
+    --border: 30 10% 87%;
+    --input: 30 10% 87%;
+
+    --accent: 244 47% 51%;
+    --accent-foreground: 0 0% 100%;
+    --accent-muted: 244 42% 58%;
+
+    --ring: 244 47% 51%;
+
+    --radius: 0.6rem;
+  }
+
+  .dark {
+    /* Dark mode — rich off-black, off-white ink, luminous indigo accent */
+    --background: 28 9% 7%;
+    --foreground: 40 18% 92%;
+
+    --muted: 30 7% 14%;
+    --muted-foreground: 34 9% 63%;
+
+    --card: 30 8% 10%;
+    --card-foreground: 40 18% 92%;
+
+    --border: 34 8% 19%;
+    --input: 34 8% 19%;
+
+    --accent: 245 66% 71%;
+    --accent-foreground: 245 45% 11%;
+    --accent-muted: 245 50% 64%;
+
+    --ring: 245 66% 71%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* offset so section anchors clear the sticky nav */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  section {
+    scroll-margin-top: 5.5rem;
+  }
+
+  ::selection {
+    background-color: hsl(var(--accent) / 0.28);
+    color: hsl(var(--foreground));
+  }
+
+  /* Refined focus ring for keyboard users */
+  :focus-visible {
+    outline: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .container-measure {
+    @apply mx-auto w-full max-w-5xl px-6 sm:px-8;
+  }
+
+  /* Subtle radial glow used behind the hero */
+  .hero-glow {
+    background: radial-gradient(
+      60% 55% at 50% 0%,
+      hsl(var(--accent) / 0.14) 0%,
+      transparent 70%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
