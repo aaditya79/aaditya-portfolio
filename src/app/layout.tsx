@@ -18,7 +18,7 @@ const fraunces = Fraunces({
   axes: ["opsz"],
 });
 
-const siteUrl = "https://aadityapai.vercel.app";
+const siteUrl = "https://aaditya-portfolio-ten.vercel.app";
 const title = `${identity.name}, ${identity.title}`;
 const description =
   "Aaditya Pai is an ML researcher specializing in LLM agent security: prompt injection, unsafe tool use, and policy enforcement across multi-step agent workflows.";

@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://aadityapai.vercel.app/sitemap.xml",
+    sitemap: "https://aaditya-portfolio-ten.vercel.app/sitemap.xml",
   };
 }
